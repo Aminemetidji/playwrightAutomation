@@ -2,7 +2,7 @@ const {test,expect} = require('@playwright/test');
 
 
 
-test('First Playwright test', async ({page})=>
+test.only('First Playwright test', async ({page})=>
 {
 await page.goto("https://mercadolibre.com.ar")
 await console.log(await page.title())
@@ -11,7 +11,7 @@ await expect(page).toHaveTitle("Mercado Libre Argentina - Envíos Gratis en el d
 await page.locator('#nav-header-menu > a:nth-child(2)').click()
 await username.fill('amine.metidji@gmail.com')
 await page.locator('#login_user_form > div.login-form__actions > button > span').click()
-
+await page.waitForLoadState('networkidle')
 
 });
 
@@ -20,4 +20,6 @@ test('Segund Playwright test', async ({page})=>
 await page.goto("https://google.com")
 await console.log(await page.title())
 await expect(page).toHaveTitle("Google")
+// wait page.locator('//*[@id="input"]').type("symend")
+
 });
